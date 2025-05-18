@@ -14,4 +14,3 @@ I am a passionate developer with extensive experience in full-stack development,
   
 ## Credits to Those Who Have Been With Me Along the Way (2022–2025)
 LudeVR, b4ts, Hotdog, MonkePro, Bypasser, Joko, Shiba, Jiko, Goober, Cemu Stacks, Cipher, KFJ, Duck, R_0, C_0, Ditlev, ItsMonkeyz, F3, A9R, CatLicker, Kante, Entity, Zenkizs, Frozen, Ian, Outspect, Shrimps, Vulse, Venix, Andrew, ZeroVR, Rxin, Framz, Kman
----
