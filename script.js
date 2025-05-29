@@ -143,8 +143,8 @@ function initCursorTrail() {
     trailX += dx * 0.1;
     trailY += dy * 0.1;
 
-    cursorTrail.style.left = trailX - 10 + 'px';
-    cursorTrail.style.top = trailY - 10 + 'px';
+    cursorTrail.style.left = trailX - 0.1 + 'px';
+    cursorTrail.style.top = trailY - 0.1 + 'px';
 
     requestAnimationFrame(updateTrail);
   }
