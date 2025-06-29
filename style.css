@@ -7,24 +7,24 @@
   --warning: #facc15;
   --danger: #ef4444;
 
-  --bg-primary: #ececec;
-  --bg-secondary: #d9d9d9;
-  --bg-tertiary: #c0c0c0;
+  --bg-primary: #f3f4f6;
+  --bg-secondary: #e5e7eb;
+  --bg-tertiary: #d1d5db;
   --bg-glass: rgba(255, 255, 255, 0.3);
-  --bg-card: #f7f7f7;
+  --bg-card: #ffffff;
 
-  --text-primary: #2e2e2e;
-  --text-secondary: #555555;
-  --text-muted: #777777;
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
   --text-accent: var(--primary);
 
-  --border-primary: rgba(46, 46, 46, 0.12);
-  --border-accent: rgba(59, 130, 246, 0.25);
+  --border-primary: rgba(0, 0, 0, 0.1);
+  --border-accent: rgba(59, 130, 246, 0.3);
 
-  --shadow-sm: 0 1px 2px rgba(46, 46, 46, 0.04);
-  --shadow-md: 0 4px 6px rgba(46, 46, 46, 0.07);
-  --shadow-lg: 0 10px 15px rgba(46, 46, 46, 0.1);
-  --shadow-xl: 0 20px 25px rgba(46, 46, 46, 0.1);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
   --shadow-glow: none;
 
   --radius-sm: 8px;
@@ -45,28 +45,46 @@ body.dark-theme {
   --bg-primary: #1f2937;
   --bg-secondary: #111827;
   --bg-tertiary: #0f172a;
-  --border-accent: rgba(251, 191, 36, 0.3);
-  --shadow-glow: none;
+  --bg-glass: rgba(0, 0, 0, 0.25);
+  --bg-card: #1e293b;
+
   --text-primary: #f3f4f6;
   --text-secondary: #d1d5db;
   --text-muted: #9ca3af;
+  --text-accent: var(--accent);
+
+  --border-primary: rgba(255, 255, 255, 0.12);
+  --border-accent: rgba(251, 191, 36, 0.3);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.8);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.9);
+  --shadow-glow: 0 0 15px var(--accent);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 50%;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: var(--font-sans);
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  margin: 0;
-  padding: 0;
   min-height: 100vh;
-  opacity: 0;
-  transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+  transition: background-color 0.35s ease, color 0.35s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  opacity: 0;
+  user-select: none;
 }
 
 .overlay {
@@ -76,22 +94,22 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   z-index: 9999;
+  cursor: pointer;
   user-select: none;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.35s ease;
 }
 
 .enter-container {
   background: var(--bg-card);
-  padding: 1.5rem 3rem;
+  padding: 1.75rem 3rem;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: var(--text-primary);
   user-select: none;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 .background {
@@ -102,24 +120,14 @@ body {
   background: var(--bg-secondary);
 }
 
-.grid-overlay {
+.background .grid-overlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
-}
-
-.particles {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.background div {
-  position: absolute;
 }
 
 .main-container {
@@ -140,10 +148,6 @@ body {
   }
 }
 
-.portfolio-grid {
-  display: contents;
-}
-
 .profile-section {
   background: var(--bg-card);
   border-radius: var(--radius-lg);
@@ -154,16 +158,17 @@ body {
   align-items: center;
   text-align: center;
   user-select: none;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 .profile-pic {
-  position: relative;
   width: 140px;
   height: 140px;
   margin-bottom: 1.5rem;
   border-radius: var(--radius-full);
   overflow: hidden;
   box-shadow: var(--shadow-md);
+  position: relative;
 }
 
 .profile-pic img {
@@ -173,28 +178,19 @@ body {
   display: block;
 }
 
-.profile-glow {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-full);
-  box-shadow: 0 0 20px var(--primary);
-  opacity: 0.15;
-  transition: opacity 0.3s ease;
-}
-
 .profile-border {
   position: absolute;
   inset: 0;
   border-radius: var(--radius-full);
   border: 2px solid var(--primary);
   box-sizing: border-box;
+  pointer-events: none;
 }
 
 .profile-info .name-text {
   font-weight: 800;
   font-size: 2rem;
-  margin: 0 0 0.25rem;
+  margin-bottom: 0.25rem;
   color: var(--text-primary);
 }
 
@@ -217,7 +213,7 @@ body {
 
 .tagline {
   font-style: italic;
-  margin: 1rem 0 0;
+  margin-top: 1rem;
   color: var(--text-secondary);
 }
 
@@ -247,6 +243,7 @@ body {
   box-shadow: var(--shadow-lg);
   padding: 2rem;
   user-select: none;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 .section-title {
@@ -273,8 +270,9 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: default;
+  user-select: none;
 }
 
 .stat-card:hover {
@@ -302,7 +300,6 @@ body {
 .stat-label {
   font-size: 0.9rem;
   color: var(--text-muted);
-  user-select: none;
 }
 
 .skills-section {
@@ -312,6 +309,7 @@ body {
   box-shadow: var(--shadow-lg);
   padding: 2rem;
   user-select: none;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 .specialty-tags {
@@ -354,7 +352,7 @@ body {
   cursor: default;
   user-select: none;
   position: relative;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .knowledge-item:hover {
@@ -383,7 +381,7 @@ body {
   grid-column: span 3;
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   gap: 2rem;
   flex-wrap: wrap;
   user-select: none;
@@ -405,16 +403,16 @@ body {
   gap: 0.8rem;
   background: var(--bg-card);
   border-radius: var(--radius-md);
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.25rem;
   box-shadow: var(--shadow-md);
   flex-grow: 1;
-  min-width: 240px;
+  min-width: 280px;
 }
 
 .audio-toggle {
   background: transparent;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: var(--primary);
   cursor: pointer;
   transition: color 0.3s ease;
@@ -434,12 +432,12 @@ body {
   flex-grow: 1;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   user-select: none;
 }
 
 .volume-control i {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--primary-dark);
   user-select: none;
   pointer-events: none;
@@ -449,9 +447,9 @@ body {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 6px;
-  border-radius: 6px;
-  background: linear-gradient(to right, var(--primary) 50%, rgba(255,255,255,0.1) 50%);
+  height: 7px;
+  border-radius: 7px;
+  background: linear-gradient(to right, var(--primary) 50%, rgba(255,255,255,0.15) 50%);
   cursor: pointer;
   transition: background 0.3s ease;
   user-select: none;
@@ -460,8 +458,8 @@ body {
 #volumeSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--primary);
   cursor: pointer;
@@ -469,11 +467,12 @@ body {
   box-shadow: var(--shadow-sm);
   transition: background-color 0.3s ease;
   user-select: none;
+  margin-top: -6.5px;
 }
 
 #volumeSlider::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--primary);
   cursor: pointer;
@@ -502,13 +501,13 @@ body {
   justify-content: center;
   background: var(--bg-card);
   border-radius: var(--radius-md);
-  padding: 0.5rem 1.25rem;
+  padding: 0.5rem 1.5rem;
   box-shadow: var(--shadow-md);
   cursor: pointer;
   user-select: none;
   transition: background-color 0.3s ease;
   flex-shrink: 0;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .theme-btn {
@@ -522,10 +521,11 @@ body {
   font-size: 1rem;
   cursor: pointer;
   transition: color 0.3s ease;
+  user-select: none;
 }
 
 .theme-btn i {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 1;
 }
 
