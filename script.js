@@ -1,10 +1,10 @@
 let bubbleInterval;
 let cursorTrail;
-let audioContext;
 let isAudioPlaying = false;
 
 function startSite() {
-  document.querySelector('.overlay').style.display = 'none';
+  const overlay = document.querySelector('.overlay');
+  if (overlay) overlay.style.display = 'none';
 
   initAudio();
   initCursorTrail();
@@ -24,20 +24,23 @@ function initAudio() {
   const volumeValue = document.querySelector('.volume-value');
   const audioToggle = document.getElementById('audioToggle');
 
+  if (!audio || !volumeSlider || !volumeValue || !audioToggle) return;
+
   audio.addEventListener('error', () => {
     audioToggle.innerHTML = '<i class="fas fa-volume-off"></i>';
     audioToggle.disabled = true;
     volumeSlider.disabled = true;
   });
 
-  audio.volume = volumeSlider.value / 100;
-  volumeValue.textContent = volumeSlider.value + '%';
+  const setVolume = () => {
+    const vol = volumeSlider.value;
+    audio.volume = vol / 100;
+    volumeValue.textContent = `${vol}%`;
+    volumeSlider.style.background = `linear-gradient(to right, var(--primary) 0%, var(--primary) ${vol}%, rgba(255,255,255,0.1) ${vol}%, rgba(255,255,255,0.1) 100%)`;
+  };
+  setVolume();
 
-  volumeSlider.addEventListener('input', () => {
-    audio.volume = volumeSlider.value / 100;
-    volumeValue.textContent = volumeSlider.value + '%';
-    volumeSlider.style.background = `linear-gradient(to right, var(--primary) 0%, var(--primary) ${volumeSlider.value}%, rgba(255,255,255,0.1) ${volumeSlider.value}%, rgba(255,255,255,0.1) 100%)`;
-  });
+  volumeSlider.addEventListener('input', setVolume);
 
   audioToggle.addEventListener('click', () => {
     if (isAudioPlaying) {
@@ -45,9 +48,11 @@ function initAudio() {
       audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
       isAudioPlaying = false;
     } else {
-      audio.play().catch(() => {});
-      audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
-      isAudioPlaying = true;
+      audio.play().then(() => {
+        audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+        isAudioPlaying = true;
+      }).catch(() => {
+      });
     }
   });
 
@@ -66,10 +71,10 @@ function startBubbles() {
 
   function createBubble() {
     const bubble = document.createElement('div');
-    const size = Math.random() * 6 + 2;
+    const size = 2 + Math.random() * 6;
     const x = Math.random() * window.innerWidth;
-    const duration = Math.random() * 15 + 10;
-    const opacity = Math.random() * 0.3 + 0.1;
+    const duration = 10 + Math.random() * 15;
+    const opacity = 0.1 + Math.random() * 0.3;
     const color = colors[Math.floor(Math.random() * colors.length)];
 
     bubble.style.cssText = `
@@ -83,6 +88,8 @@ function startBubbles() {
       pointer-events: none;
       animation: floatUp ${duration}s linear forwards;
       box-shadow: 0 0 ${size * 2}px rgba(${color}, ${opacity * 0.5});
+      will-change: transform, opacity;
+      z-index: 1;
     `;
 
     background.appendChild(bubble);
@@ -98,28 +105,32 @@ function startBubbles() {
 
 function animateStats() {
   const statNumbers = document.querySelectorAll('.stat-number');
+  if (statNumbers.length === 0) return;
 
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const stat = entry.target;
-        const target = parseInt(stat.getAttribute('data-target'));
+        const target = parseInt(stat.dataset.target, 10);
+        if (isNaN(target)) return;
+
         const increment = Math.ceil(target / 60);
         let current = 0;
 
         const timer = setInterval(() => {
           current += increment;
           if (current >= target) {
-            current = target;
+            stat.textContent = target.toLocaleString();
             clearInterval(timer);
+          } else {
+            stat.textContent = current.toLocaleString();
           }
-          stat.textContent = current.toLocaleString();
         }, 30);
 
-        observer.unobserve(stat);
+        obs.unobserve(stat);
       }
     });
-  });
+  }, { threshold: 1.0 });
 
   statNumbers.forEach(stat => observer.observe(stat));
 }
@@ -131,7 +142,7 @@ function initCursorTrail() {
   let mouseX = 0, mouseY = 0;
   let trailX = 0, trailY = 0;
 
-  document.addEventListener('mousemove', (e) => {
+  document.addEventListener('mousemove', e => {
     mouseX = e.clientX;
     mouseY = e.clientY;
   });
@@ -140,15 +151,14 @@ function initCursorTrail() {
     const dx = mouseX - trailX;
     const dy = mouseY - trailY;
 
-    trailX += dx;
-    trailY += dy;
+    trailX += dx * 0.15; 
+    trailY += dy * 0.15;
 
-    cursorTrail.style.left = trailX - 10 + 'px';
-    cursorTrail.style.top = trailY - 10 + 'px';
+    cursorTrail.style.left = `${trailX - 10}px`;
+    cursorTrail.style.top = `${trailY - 10}px`;
 
     requestAnimationFrame(updateTrail);
   }
-
   updateTrail();
 
   document.addEventListener('mouseleave', () => cursorTrail.style.opacity = '0');
@@ -157,6 +167,8 @@ function initCursorTrail() {
 
 function initThemeToggle() {
   const themeToggle = document.getElementById('themeToggle');
+  if (!themeToggle) return;
+
   const themeIcon = themeToggle.querySelector('i');
   const themeText = themeToggle.querySelector('span');
 
@@ -198,13 +210,15 @@ function startAnimations() {
       card.style.transition = 'all 0.5s ease';
       card.style.opacity = '1';
       card.style.transform = 'translateY(0)';
-    }, 600 + (index * 100));
+    }, 600 + index * 100);
   });
 }
 
 function initInteractions() {
   const knowledgeItems = document.querySelectorAll('.knowledge-item');
   knowledgeItems.forEach(knowledge => {
+    knowledge.style.position = 'relative';
+
     knowledge.addEventListener('mouseenter', () => {
       knowledge.style.transform = 'translateY(-4px) scale(1.02)';
 
@@ -216,6 +230,7 @@ function initInteractions() {
         border-radius: inherit;
         pointer-events: none;
         animation: ripple 0.6s ease-out forwards;
+        z-index: 0;
       `;
       knowledge.appendChild(ripple);
       setTimeout(() => ripple.remove(), 600);
@@ -227,21 +242,22 @@ function initInteractions() {
   });
 
   const panel = document.querySelector('.panel');
-  panel?.addEventListener('mouseenter', () => {
-    panel.style.transform = 'scale(1.01)';
-    panel.style.boxShadow = 'var(--shadow-xl), 0 0 40px rgba(99, 102, 241, 0.2)';
-  });
-
-  panel?.addEventListener('mouseleave', () => {
-    panel.style.transform = 'scale(1)';
-    panel.style.boxShadow = 'var(--shadow-xl), var(--shadow-glow)';
-  });
+  if (panel) {
+    panel.addEventListener('mouseenter', () => {
+      panel.style.transform = 'scale(1.01)';
+      panel.style.boxShadow = 'var(--shadow-xl), 0 0 40px rgba(99, 102, 241, 0.2)';
+    });
+    panel.addEventListener('mouseleave', () => {
+      panel.style.transform = 'scale(1)';
+      panel.style.boxShadow = 'var(--shadow-xl), var(--shadow-glow)';
+    });
+  }
 
   const specialtyTags = document.querySelectorAll('.specialty-tag');
   specialtyTags.forEach(tag => {
     tag.addEventListener('click', () => {
       tag.style.transform = 'scale(1.1)';
-      setTimeout(() => tag.style.transform = 'scale(1)', 150);
+      setTimeout(() => (tag.style.transform = 'scale(1)'), 150);
     });
   });
 }
@@ -267,5 +283,8 @@ window.addEventListener('beforeunload', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => document.body.style.opacity = '1', 100);
+  setTimeout(() => {
+    document.body.style.opacity = '1';
+    startSite();
+  }, 100);
 });
