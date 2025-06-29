@@ -172,6 +172,12 @@ function initThemeToggle() {
   const themeIcon = themeToggle.querySelector('i');
   const themeText = themeToggle.querySelector('span');
 
+  if (!document.body.classList.contains('dark-theme')) {
+    document.body.classList.add('dark-theme');
+  }
+  themeIcon.className = 'fas fa-moon';
+  themeText.textContent = 'Dark';
+
   themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-theme');
 
@@ -187,6 +193,7 @@ function initThemeToggle() {
     }
   });
 }
+
 
 function startAnimations() {
   const panel = document.querySelector('.panel');
