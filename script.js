@@ -1,4 +1,4 @@
-let bubbleInterval;Add commentMore actions
+let bubbleInterval;
 let cursorTrail;
 let audioContext;
 let isAudioPlaying = false;
