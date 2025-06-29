@@ -32,15 +32,17 @@ function initAudio() {
     volumeSlider.disabled = true;
   });
 
-  const setVolume = () => {
-    const vol = volumeSlider.value;
+  function updateVolumeUI(vol) {
     audio.volume = vol / 100;
     volumeValue.textContent = `${vol}%`;
     volumeSlider.style.background = `linear-gradient(to right, var(--primary) 0%, var(--primary) ${vol}%, rgba(255,255,255,0.1) ${vol}%, rgba(255,255,255,0.1) 100%)`;
-  };
-  setVolume();
+  }
 
-  volumeSlider.addEventListener('input', setVolume);
+  updateVolumeUI(volumeSlider.value);
+
+  volumeSlider.addEventListener('input', () => {
+    updateVolumeUI(volumeSlider.value);
+  });
 
   audioToggle.addEventListener('click', () => {
     if (isAudioPlaying) {
@@ -51,13 +53,13 @@ function initAudio() {
       audio.play().then(() => {
         audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
         isAudioPlaying = true;
-      }).catch(() => {
-      });
+      }).catch(() => {});
     }
   });
 
   audio.play().then(() => {
     isAudioPlaying = true;
+    audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
   }).catch(() => {
     audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
   });
@@ -105,7 +107,7 @@ function startBubbles() {
 
 function animateStats() {
   const statNumbers = document.querySelectorAll('.stat-number');
-  if (statNumbers.length === 0) return;
+  if (!statNumbers.length) return;
 
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
@@ -114,8 +116,8 @@ function animateStats() {
         const target = parseInt(stat.dataset.target, 10);
         if (isNaN(target)) return;
 
-        const increment = Math.ceil(target / 60);
         let current = 0;
+        const increment = Math.ceil(target / 60);
 
         const timer = setInterval(() => {
           current += increment;
@@ -151,7 +153,7 @@ function initCursorTrail() {
     const dx = mouseX - trailX;
     const dy = mouseY - trailY;
 
-    trailX += dx * 0.15; 
+    trailX += dx * 0.15;
     trailY += dy * 0.15;
 
     cursorTrail.style.left = `${trailX - 10}px`;
@@ -161,8 +163,12 @@ function initCursorTrail() {
   }
   updateTrail();
 
-  document.addEventListener('mouseleave', () => cursorTrail.style.opacity = '0');
-  document.addEventListener('mouseenter', () => cursorTrail.style.opacity = '0.6');
+  document.addEventListener('mouseleave', () => {
+    cursorTrail.style.opacity = '0';
+  });
+  document.addEventListener('mouseenter', () => {
+    cursorTrail.style.opacity = '0.6';
+  });
 }
 
 function initThemeToggle() {
@@ -193,7 +199,6 @@ function initThemeToggle() {
     }
   });
 }
-
 
 function startAnimations() {
   const panel = document.querySelector('.panel');
@@ -292,6 +297,9 @@ window.addEventListener('beforeunload', () => {
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     document.body.style.opacity = '1';
-    startSite();
-  }, 100);
+  }, 50);
+});
+
+document.querySelector('.overlay')?.addEventListener('click', () => {
+  startSite();
 });
