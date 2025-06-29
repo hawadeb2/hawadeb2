@@ -1,26 +1,28 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hawa | Portfolio</title>
-  <meta property="og:title" content="Hawa | Portfolio">
-  <meta property="og:description" content="Full-stack dev">
-  <meta property="og:image" content="https://hawadeb2.github.io/hawadeb2/pfp.webp">
-  <meta property="og:url" content="https://hawadeb2.github.io/hawadeb2">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Hawa | Portfolio">
-  <meta name="twitter:description" content="Full-stack developer specializing in game development and security">
-  <meta name="twitter:image" content="https://hawadeb2.github.io/hawadeb2/pfp.webp">
-  <meta name="twitter:url" content="https://hawadeb2.github.io/hawadeb2/">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+
+  <meta property="og:title" content="Hawa | Portfolio" />
+  <meta property="og:description" content="Full-stack dev" />
+  <meta property="og:image" content="https://hawadeb2.github.io/hawadeb2/pfp.webp" />
+  <meta property="og:url" content="https://hawadeb2.github.io/hawadeb2" />
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hawa | Portfolio" />
+  <meta name="twitter:description" content="Full-stack developer specializing in game development and security" />
+  <meta name="twitter:image" content="https://hawadeb2.github.io/hawadeb2/pfp.webp" />
+  <meta name="twitter:url" content="https://hawadeb2.github.io/hawadeb2/" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="overlay" onclick="startSite()">
+  <div class="overlay" onclick="startSite()" role="button" tabindex="0" aria-label="Enter site">
     <div class="enter-container">
       <div class="enter-subtext">Click to enter</div>
     </div>
@@ -33,11 +35,11 @@
   
   <audio id="bgAudio" src="music.mp3" loop></audio>
 
-  <div class="main-container">
-    <div class="portfolio-grid">
-      <div class="profile-section">
+  <main class="main-container">
+    <section class="portfolio-grid">
+      <section class="profile-section" aria-label="Profile information">
         <div class="profile-pic">
-          <img src="pfp.webp" alt="Hawa Profile Picture">
+          <img src="pfp.webp" alt="Profile picture of Hawa" />
           <div class="profile-glow"></div>
           <div class="profile-border"></div>
         </div>
@@ -45,172 +47,181 @@
         <div class="profile-info">
           <h1 class="name-text">Hawa</h1>
           <span class="role-badge">
-            <i class="fas fa-code"></i>
+            <i class="fas fa-code" aria-hidden="true"></i>
             Fullstack Developer
           </span>
           <p class="tagline">
-            <i class="fas fa-quote-left"></i>
-           Hated by many defeated by none.
-            <i class="fas fa-quote-right"></i>
+            <i class="fas fa-quote-left" aria-hidden="true"></i>
+            Hated by many defeated by none.
+            <i class="fas fa-quote-right" aria-hidden="true"></i>
           </p>
         </div>
         
-        <div class="status-indicator">
+        <div class="status-indicator" aria-label="Current status">
           <div class="status-dot"></div>
           taking a break
         </div>
-      </div>
+      </section>
 
-      <div class="stats-section">
+      <section class="stats-section" aria-label="Statistics">
         <h3 class="section-title">
-          <i class="fas fa-chart-line"></i>
+          <i class="fas fa-chart-line" aria-hidden="true"></i>
           Stats
         </h3>
         <div class="stats-grid">
-          <div class="stat-card">
+          <article class="stat-card">
             <div class="stat-icon">
-              <i class="fas fa-calendar-alt"></i>
+              <i class="fas fa-calendar-alt" aria-hidden="true"></i>
             </div>
             <div class="stat-info">
-              <span class="stat-number" data-target="3">0</span>
+              <span class="stat-number" data-target="3" aria-live="polite" aria-atomic="true">0</span>
               <span class="stat-label">Years Experience</span>
             </div>
-          </div>
-          <div class="stat-card">
+          </article>
+          <article class="stat-card">
             <div class="stat-icon">
-              <i class="fas fa-rocket"></i>
+              <i class="fas fa-rocket" aria-hidden="true"></i>
             </div>
             <div class="stat-info">
-              <span class="stat-number" data-target="3">0</span>
+              <span class="stat-number" data-target="3" aria-live="polite" aria-atomic="true">0</span>
               <span class="stat-label">Projects</span>
             </div>
-          </div>
-          <div class="stat-card">
+          </article>
+          <article class="stat-card">
             <div class="stat-icon">
-              <i class="fas fa-users"></i>
+              <i class="fas fa-users" aria-hidden="true"></i>
             </div>
             <div class="stat-info">
-              <span class="stat-number" data-target="471">0</span>
+              <span class="stat-number" data-target="471" aria-live="polite" aria-atomic="true">0</span>
               <span class="stat-label">Clients</span>
             </div>
-          </div>
+          </article>
         </div>
-      </div>
+      </section>
 
-      <div class="skills-section">
+      <section class="skills-section">
         <h3 class="section-title">
-          <i class="fas fa-star"></i>
+          <i class="fas fa-star" aria-hidden="true"></i>
           Specialties
         </h3>
-        <div class="specialty-tags">
-          <div class="specialty-tag">
-            <i class="fas fa-gamepad"></i>
+        <div class="specialty-tags" role="list">
+          <div class="specialty-tag" role="listitem" tabindex="0">
+            <i class="fas fa-gamepad" aria-hidden="true"></i>
             Cheat Development
           </div>
-          <div class="specialty-tag">
-            <i class="fas fa-shield-alt"></i>
+          <div class="specialty-tag" role="listitem" tabindex="0">
+            <i class="fas fa-shield-alt" aria-hidden="true"></i>
             Reverse Engineering
           </div>
-          <div class="specialty-tag">
-            <i class="fas fa-cube"></i>
+          <div class="specialty-tag" role="listitem" tabindex="0">
+            <i class="fas fa-cube" aria-hidden="true"></i>
             Unity Engine
           </div>
-          <div class="specialty-tag">
-            <i class="fab fa-windows"></i>
+          <div class="specialty-tag" role="listitem" tabindex="0">
+            <i class="fab fa-windows" aria-hidden="true"></i>
             Windows Applications
           </div>
         </div>
 
         <h3 class="section-title">
-          <i class="fas fa-brain"></i>
+          <i class="fas fa-brain" aria-hidden="true"></i>
           Programming knowledge
         </h3>
-        <div class="knowledge-grid">
-          <div class="knowledge-item">
+        <div class="knowledge-grid" role="list">
+          <div class="knowledge-item" role="listitem" tabindex="0">
             <div class="knowledge-icon">
-              <i class="fab fa-microsoft"></i>
+              <i class="fab fa-microsoft" aria-hidden="true"></i>
             </div>
             <div class="knowledge-name">C# Development</div>
             <div class="knowledge-count">1 year experience</div>
           </div>
-          <div class="knowledge-item">
+          <div class="knowledge-item" role="listitem" tabindex="0">
             <div class="knowledge-icon">
-              <i class="fas fa-code"></i>
+              <i class="fas fa-code" aria-hidden="true"></i>
             </div>
             <div class="knowledge-name">C++ Programming</div>
             <div class="knowledge-count">1 month learning</div>
           </div>
-          <div class="knowledge-item">
+          <div class="knowledge-item" role="listitem" tabindex="0">
             <div class="knowledge-icon">
-              <i class="fab fa-html5"></i>
+              <i class="fab fa-html5" aria-hidden="true"></i>
             </div>
             <div class="knowledge-name">Web Technologies</div>
             <div class="knowledge-count">3 years experience</div>
           </div>
-          <div class="knowledge-item">
+          <div class="knowledge-item" role="listitem" tabindex="0">
             <div class="knowledge-icon">
-              <i class="fas fa-moon"></i>
+              <i class="fas fa-moon" aria-hidden="true"></i>
             </div>
             <div class="knowledge-name">Lua Scripting</div>
             <div class="knowledge-count">1 year experience</div>
           </div>
-          <div class="knowledge-item">
+          <div class="knowledge-item" role="listitem" tabindex="0">
             <div class="knowledge-icon">
-              <i class="fab fa-js-square"></i>
+              <i class="fab fa-js-square" aria-hidden="true"></i>
             </div>
             <div class="knowledge-name">JavaScript</div>
             <div class="knowledge-count">1 year experience</div>
           </div>
-          <div class="knowledge-item">
+          <div class="knowledge-item" role="listitem" tabindex="0">
             <div class="knowledge-icon">
-              <i class="fab fa-python"></i>
+              <i class="fab fa-python" aria-hidden="true"></i>
             </div>
             <div class="knowledge-name">Python</div>
             <div class="knowledge-count">1.5 years experience</div>
           </div>
-          <div class="knowledge-item">
+          <div class="knowledge-item" role="listitem" tabindex="0">
             <div class="knowledge-icon">
-              <i class="fas fa-search"></i>
+              <i class="fas fa-search" aria-hidden="true"></i>
             </div>
             <div class="knowledge-name">Reverse Engineering</div>
             <div class="knowledge-count">2 years experience</div>
           </div>
-          <div class="knowledge-item">
+          <div class="knowledge-item" role="listitem" tabindex="0">
             <div class="knowledge-icon">
-              <i class="fas fa-bug"></i>
+              <i class="fas fa-bug" aria-hidden="true"></i>
             </div>
             <div class="knowledge-name">RAT Development</div>
             <div class="knowledge-count">1 year experience</div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="controls-section">
+      <section class="controls-section">
         <div class="controls">
           <div class="audio-controls">
-            <button class="audio-toggle" id="audioToggle">
-              <i class="fas fa-volume-up"></i>
+            <button class="audio-toggle" id="audioToggle" aria-pressed="true" title="Toggle audio">
+              <i class="fas fa-volume-up" aria-hidden="true"></i>
             </button>
             <div class="volume-control">
-              <i class="fas fa-volume-down"></i>
-              <input type="range" id="volumeSlider" min="0" max="100" value="50">
-              <i class="fas fa-volume-up"></i>
+              <i class="fas fa-volume-down" aria-hidden="true"></i>
+              <input
+                type="range"
+                id="volumeSlider"
+                min="0"
+                max="100"
+                value="50"
+                aria-label="Volume slider"
+                style="background: linear-gradient(to right, var(--primary) 0%, var(--primary) 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 100%)"
+              />
+              <i class="fas fa-volume-up" aria-hidden="true"></i>
             </div>
-            <div class="volume-value">50%</div>
+            <div class="volume-value" aria-live="polite" aria-atomic="true">50%</div>
           </div>
           
           <div class="theme-controls">
-            <button class="theme-btn" id="themeToggle">
-              <i class="fas fa-sun"></i>
+            <button class="theme-btn" id="themeToggle" aria-pressed="false" title="Toggle theme">
+              <i class="fas fa-sun" aria-hidden="true"></i>
               <span>Light</span>
             </button>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+      </section>
+    </section>
+  </main>
 
-  <div class="cursor-trail"></div>
+  <div class="cursor-trail" aria-hidden="true"></div>
+
   <script src="script.js"></script>
 </body>
 </html>
