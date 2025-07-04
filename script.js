@@ -3,10 +3,18 @@ let cursorTrail;
 let audioContext;
 let isAudioPlaying = false;
 
+const playlist = [
+  'music1.mp3',
+  'music2.mp3',
+  'music3.mp3'
+];
+let currentTrackIndex = 0;
+
 function startSite() {
   document.querySelector('.overlay').style.display = 'none';
 
   initAudio();
+  initCustomMusicPlayer();
   initCursorTrail();
   initThemeToggle();
   startAnimations();
@@ -56,6 +64,56 @@ function initAudio() {
   }).catch(() => {
     audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
   });
+}
+
+function initCustomMusicPlayer() {
+  const audio = document.getElementById('customAudio');
+  const seekSlider = document.getElementById('seekSlider');
+  const currentTimeEl = document.getElementById('currentTime');
+  const durationEl = document.getElementById('duration');
+  const volumeSlider = document.getElementById('customVolume');
+  const volumeDisplay = document.getElementById('volumeDisplay');
+  const skipBtn = document.getElementById('skipBtn');
+  const replayBtn = document.getElementById('replayBtn');
+
+  // Initialize with first song
+  audio.src = playlist[currentTrackIndex];
+
+  audio.addEventListener('loadedmetadata', () => {
+    seekSlider.max = audio.duration;
+    durationEl.textContent = formatTime(audio.duration);
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    seekSlider.value = audio.currentTime;
+    currentTimeEl.textContent = formatTime(audio.currentTime);
+  });
+
+  seekSlider.addEventListener('input', () => {
+    audio.currentTime = seekSlider.value;
+  });
+
+  volumeSlider.addEventListener('input', () => {
+    audio.volume = volumeSlider.value;
+    volumeDisplay.textContent = Math.round(volumeSlider.value * 100) + '%';
+  });
+
+  skipBtn.addEventListener('click', () => {
+    currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+    audio.src = playlist[currentTrackIndex];
+    audio.play();
+  });
+
+  replayBtn.addEventListener('click', () => {
+    audio.currentTime = 0;
+    audio.play();
+  });
+
+  function formatTime(time) {
+    const mins = Math.floor(time / 60);
+    const secs = Math.floor(time % 60).toString().padStart(2, '0');
+    return `${mins}:${secs}`;
+  }
 }
 
 function startBubbles() {
@@ -255,7 +313,7 @@ style.textContent = `
     100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
   }
 
-  @keyframes ripple {Add commentMore actions
+  @keyframes ripple {
     0% { transform: scale(0); opacity: 1; }
     100% { transform: scale(1); opacity: 0; }
   }
