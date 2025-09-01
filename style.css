@@ -405,16 +405,18 @@ body {
 
 .knowledge-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.2rem;
   margin-bottom: 2.5rem;
-
   max-height: 300px;
   overflow-y: auto;
   padding-right: 0.4rem;
-
   scrollbar-width: thin;
   scrollbar-color: var(--accent) var(--bg-tertiary);
+}
+
+.knowledge-grid > .knowledge-card {
+  min-height: 60px;
 }
 
 .knowledge-grid::-webkit-scrollbar {
@@ -434,7 +436,6 @@ body {
 .knowledge-grid::-webkit-scrollbar-thumb:hover {
   background: var(--text-accent);
 }
-
 
 .knowledge-item {
   background: var(--bg-card);
