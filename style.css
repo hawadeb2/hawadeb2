@@ -415,7 +415,7 @@ body {
   scrollbar-color: var(--accent) var(--bg-tertiary);
 }
 
-.knowledge-grid > .knowledge-card {
+.knowledge-grid > .knowledge-item {
   min-height: 60px;
 }
 
@@ -436,6 +436,7 @@ body {
 .knowledge-grid::-webkit-scrollbar-thumb:hover {
   background: var(--text-accent);
 }
+
 
 .knowledge-item {
   background: var(--bg-card);
