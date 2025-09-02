@@ -447,6 +447,7 @@ body {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  z-index: 1
 }
 
 .knowledge-item::before {
@@ -456,6 +457,7 @@ body {
   background: linear-gradient(135deg, rgba(74, 85, 104, 0.08), rgba(160, 174, 192, 0.08));
   opacity: 0;
   transition: opacity 0.4s ease;
+  z-index: 0;
 }
 
 .knowledge-item:hover::before { opacity: 1; }
