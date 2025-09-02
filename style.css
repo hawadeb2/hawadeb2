@@ -186,7 +186,27 @@ body {
   grid-area: stats;
   padding: 2.5rem;
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--bg-tertiary);
   animation: panelEnter 0.8s ease-out 0.15s both;
+}
+
+.stats-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.stats-section::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+}
+
+.stats-section::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: var(--radius-sm);
+}
+
+.stats-section::-webkit-scrollbar-thumb:hover {
+  background: var(--text-accent);
 }
 
 .skills-section {
@@ -415,10 +435,6 @@ body {
   scrollbar-color: var(--accent) var(--bg-tertiary);
 }
 
-.knowledge-grid > .knowledge-item {
-  min-height: 60px;
-}
-
 .knowledge-grid::-webkit-scrollbar {
   width: 8px;
 }
@@ -459,9 +475,7 @@ body {
   z-index: -1;
 }
 
-.knowledge-item:hover::before {
-  opacity: 1;
-}
+.knowledge-item:hover::before { opacity: 1; }
 
 .knowledge-item:hover {
   transform: translateY(-3px);
@@ -595,11 +609,11 @@ body {
 
 .volume-value {
   font-size: 0.8rem;
-  color: var(--text-accent);
-  font-weight: 600;
-  font-family: var(--font-mono);
-  min-width: 40px;
+  color: var(--text-muted);
+  width: 36px;
+  text-align: center;
 }
+
 
 .theme-controls { display: flex; gap: 0.6rem; }
 
