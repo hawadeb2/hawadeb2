@@ -437,7 +437,6 @@ body {
   background: var(--text-accent);
 }
 
-
 .knowledge-item {
   background: var(--bg-card);
   border: 1px solid var(--border-primary);
@@ -447,7 +446,7 @@ body {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  z-index: 1
+  z-index: 0;
 }
 
 .knowledge-item::before {
@@ -457,10 +456,12 @@ body {
   background: linear-gradient(135deg, rgba(74, 85, 104, 0.08), rgba(160, 174, 192, 0.08));
   opacity: 0;
   transition: opacity 0.4s ease;
-  z-index: 0;
+  z-index: -1;
 }
 
-.knowledge-item:hover::before { opacity: 1; }
+.knowledge-item:hover::before {
+  opacity: 1;
+}
 
 .knowledge-item:hover {
   transform: translateY(-3px);
@@ -472,6 +473,8 @@ body {
   font-size: 1.6rem;
   color: var(--text-accent);
   margin-bottom: 0.8rem;
+  position: relative;
+  z-index: 1;
 }
 
 .knowledge-name {
